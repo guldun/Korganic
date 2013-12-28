@@ -21,48 +21,60 @@
  * This software is licensed under the MIT License
  */
 
-var Korganic = function(){
+var Korganic = function(width, height, fps)
+{
 
-this.fps = 50;
-this.width = 800;
-this.height = 600;
-this.canvas;
-this.context;
+    this.fps = 50;
+    this.width = 800;
+    this.height = 600;
+    this.canvas;
+    this.context;
+
+    if(width !== 'undefined')
+    {
+        this.setWidth(width);
+    }
+    else
+    {
+        console.log("Korganic: Error: Width is Undefined");
+        return 1;
+    }
+    if(height !== 'undefined') 
+    {
+        this.setHeight(height);
+    }
+    else
+    {
+        console.log("Korganic: Error: Height is Undefined");
+        return 1;
+    }
+    if(fps !== 'undefined') 
+    {
+        this.setFPS(fps);
+    }
+    else
+    {
+        console.log("Korganic: Error: FPS is Undefined");
+        return 1;
+    }
+
+    //Create the canvas
+    this.canvas = document.createElement('canvas');
+    this.canvas.id = 'viewport';
+    document.getElementById('Korganic').appendChild(this.canvas);
+
+    //Set the Canvas width and height
+    this.canvas.width = this.width;
+    this.canvas.height = this.height;
+
+    //Create the context
+    this.context = document.getElementById("viewport").getContext("2d");
 
 };
+
 Korganic.prototype = {
     constructor: Korganic,
-    
-    Korganic: function(width, height, fps){
-        if(width !== 'undefined')
-        {
-            this.setWidth(width);
-        
-        }
-        else
-        {
-            console.log("Korganic: Error: Width is Undefined");
-        }
-        if(height !== 'undefined') 
-        {
-            this.setHeight(height);
-        }
-        else
-        {
-            console.log("Korganic: Error: Height is Undefined");
-        }
-        if(fps !== 'undefined') 
-        {
-            this.setFPS(fps);
-        }
-        else
-        {
-            console.log("Korganic: Error: FPS is Undefined");
-        }
-        
-        
-    },
-            
+                
     init: function(){
         
     },

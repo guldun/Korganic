@@ -1,4 +1,4 @@
-<!--
+/* 
  * Korganic
  * 
  * By Joshua Lawson - SphyrixNetworks
@@ -19,18 +19,30 @@
  * 
  * ----------------
  * This software is licensed under the MIT License
--->
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Korganic</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <div id="Korganic"></div>
-        <script type="text/javascript" charset="utf-8" src="Korganic.js"></script>
-        <script>
-            kg = new Korganic(800,600,50);
-        </script>
-    </body>
-</html>
+ */
+
+var Circle = function(settings)
+{
+    this.settings = 
+    {
+        width: 0,
+        height: 0,
+        x: 0,
+        y: 0,
+        fill: false,
+        fill_colour: '#ffffff',
+        fill_pattern: false,
+        fill_opacity: 100,
+        stroke: false,
+        stroke_colour: '#ffffff',
+        stroke_pattern: false,
+        stroke_opacity: 100,
+        opacity: 100
+    };
+};
+
+Circle.prototype = {
+    constructor: Cirlce,
+    
+    
+};
