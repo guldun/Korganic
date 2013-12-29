@@ -21,30 +21,158 @@
  * This software is licensed under the MIT License
  */
 
-//Circle Branch
-
-var Circle = function(settings)
+var Circle = function(context, settings)
 {
+    this.context = context;
+    
     this.settings = 
     {
-        width: 0,
-        height: 0,
-        x: 0,
-        y: 0,
-        fill: false,
-        fill_colour: '#ffffff',
-        fill_pattern: false,
-        fill_opacity: 100,
-        stroke: false,
-        stroke_colour: '#ffffff',
-        stroke_pattern: false,
-        stroke_opacity: 100,
-        opacity: 100
+        width: settings.width || 0,
+        height: settings.height || 0,
+        x: settings.x || 0,
+        y: settings.y || 0,
+        fill: settings.fill || false,
+        fill_opacity: settings.fill_opacity || 1,
+        stroke: settings.stroke || false,
+        stroke_width: settings.stroke_width || 1,
+        stroke_opacity: settings.stroke_opacity || 1,
+        opacity: settings.opacity || 100
     };
+    
+    //Draw Elipse or Circle
+    var kappa = .5522848,
+    
+    x = this.getX(),
+    y = this.getY(),        
+    ox = (this.getWidth() / 2) * kappa, // control point offset horizontal
+    oy = (this.getHeight() / 2) * kappa, // control point offset vertical
+    xe = this.getX() + this.getWidth(),           // x-end
+    ye = this.getY() + this.getHeight(),           // y-end
+    xm = this.getX() + this.getWidth() / 2,       // x-middle
+    ym = this.getY() + this.getHeight() / 2;       // y-middle
+
+    this.context.beginPath();
+    this.context.moveTo(this.getX(), ym);
+    this.context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
+    this.context.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
+    this.context.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
+    this.context.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
+    
+    //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
+    if(this.getOpacity() !== 100)
+    {
+        this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+        this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+    }
+    
+    //If fill is set or stroke is set
+    if(this.getFill() !== false)
+    {    
+        this.context.fillStyle = "rgba(" + hexToRgb(this.getFill()).r + ", " + hexToRgb(this.getFill()).g + ", " + hexToRgb(this.getFill()).b + ", " + this.getFillOpacity() + ")";
+        this.context.fill();
+    }
+    if(this.getStroke !== false)
+    {
+        this.context.strokeStyle = "rgba(" + hexToRgb(this.getStroke()).r + ", " + hexToRgb(this.getStroke()).g + ", " + hexToRgb(this.getStroke()).b + ", " + this.getStrokeOpacity() + ")";
+        this.context.lineWidth = this.getStrokeWidth();
+        this.context.stroke();
+    }
+        
+    this.context.closePath();
+    
 };
 
 Circle.prototype = {
-    constructor: Cirlce,
+    constructor: Circle,
+ 
+    getWidth: function(){
+        return this.settings.width;
+    },
+    
+    setWidth: function(width){
+        this.settings.width = width;
+    },
+    
+    getHeight: function(){
+        return this.settings.height;
+    },
+    
+    setHeight: function(height){
+        this.settings.height = height;
+    },
     
     
+    getX: function(){
+        return this.settings.x;
+    },
+    
+    setX: function(x){
+        this.settings.x = x;
+    },
+    
+    getY: function(){
+        return this.settings.y;
+    },
+            
+    setY: function(y){
+        this.settings.y = y;
+    },
+    
+    getFill: function(){
+        return this.settings.fill;
+    },
+    
+    setFill: function(fill){
+        this.settings.fill = fill;
+    },
+    
+    getFillOpacity: function(){
+        return this.settings.fill_opacity;
+    },
+    
+    setFillOpacity: function(fill_opacity){
+        this.settings.fill_opacity = fill_opacity;
+    },
+            
+    getStroke: function(){
+        return this.settings.stroke;
+    },
+    
+    setStroke: function(stroke){
+        this.settings.stroke = stroke;
+    },
+            
+    getStrokeOpacity: function(){
+        return this.settings.stroke_opacity;
+    },
+    
+    setStrokeOpacity: function(stroke_opacity){
+        this.settings.stroke_opacity = stroke_opacity;
+    },
+            
+    getOpacity: function(){
+        return this.settings.opacity;
+    },
+    
+    setOpacity: function(opacity){
+        this.settings.opacity = opacity;
+    },
+            
+    getStrokeWidth: function(){
+        return this.settings.stroke_width;
+    },
+    
+    setStrokeWidth: function(stroke_width){
+        this.settings.stroke_width = stroke_width;
+    }
+    
+};
+
+function hexToRgb(hex) {
+    var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    return result ? {
+        r: parseInt(result[1], 16),
+        g: parseInt(result[2], 16),
+        b: parseInt(result[3], 16)
+    } : null;
 };
