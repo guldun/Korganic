@@ -36,9 +36,15 @@ var Square = function(context, settings)
         stroke: settings.stroke || false,
         stroke_width: settings.stroke_width || 1,
         stroke_opacity: settings.stroke_opacity || 1,
-        opacity: settings.opacity || 100,
-        rotation: settings.rotaion || 0
+        opacity: settings.opacity || 100
     };
+    
+    //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
+    if(this.getOpacity() !== 100)
+    {
+        this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+        this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+    }
     
     this.draw();
 };
@@ -126,25 +132,10 @@ Square.prototype = {
         this.settings.stroke_width = stroke_width;
     },
             
-    getRotation: function(){
-        return this.settings.rotation;
-    },
-    
-    setRotation: function(rotation){
-        this.settings.rotation = rotation;
-    },
-            
     draw: function()
     {
         this.context.beginPath();
         this.context.fillRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
-
-        //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
-        if(this.getOpacity() !== 100)
-        {
-            this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
-            this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
-        }
 
         //If fill is set or stroke is set
         if(this.getFill() !== false)
