@@ -40,6 +40,13 @@ var Circle = function(context, settings)
         rotation: settings.rotation || 0
     };
     
+    //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
+    if(this.getOpacity() !== 100)
+    {
+        this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+        this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+    }
+    
     this.draw();
     
 };
@@ -154,18 +161,12 @@ Circle.prototype = {
 
         this.context.beginPath();
         this.context.moveTo(this.getX(), ym);
+        
         this.context.bezierCurveTo(x, ym - oy, xm - ox, y, xm, y);
         this.context.bezierCurveTo(xm + ox, y, xe, ym - oy, xe, ym);
         this.context.bezierCurveTo(xe, ym + oy, xm + ox, ye, xm, ye);
         this.context.bezierCurveTo(xm - ox, ye, x, ym + oy, x, ym);
-
-        //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
-        if(this.getOpacity() !== 100)
-        {
-            this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
-            this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
-        }
-
+        
         //If fill is set or stroke is set
         if(this.getFill() !== false)
         {    
