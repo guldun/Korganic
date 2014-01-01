@@ -42,6 +42,28 @@ var Square = function(context, settings)
     this.context.beginPath();
     this.context.fillRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
     
+    //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
+    if(this.getOpacity() !== 100)
+    {
+        this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+        this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
+    }
+    
+    //If fill is set or stroke is set
+    if(this.getFill() !== false)
+    {    
+        this.context.fillStyle = "rgba(" + hexToRgb(this.getFill()).r + ", " + hexToRgb(this.getFill()).g + ", " + hexToRgb(this.getFill()).b + ", " + this.getFillOpacity() + ")";
+        this.context.fill();
+    }
+    if(this.getStroke !== false)
+    {
+        this.context.strokeStyle = "rgba(" + hexToRgb(this.getStroke()).r + ", " + hexToRgb(this.getStroke()).g + ", " + hexToRgb(this.getStroke()).b + ", " + this.getStrokeOpacity() + ")";
+        this.context.lineWidth = this.getStrokeWidth();
+        this.context.stroke();
+    }
+        
+    this.context.closePath();
+    
 };
 
 Circle.prototype = {
