@@ -45,9 +45,8 @@ var Square = function(context, settings)
         this.setStrokeOpacity(this.getStrokeOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
         this.setFillOpacity(this.getFillOpacity() * (1 - (parseFloat(this.getOpacity()) / 100.0)));
     }
-    
     this.draw();
-
+    
 };
 
 Square.prototype = {
@@ -133,10 +132,9 @@ Square.prototype = {
         this.settings.stroke_width = stroke_width;
     },
             
-    draw: function()
-    {
+    draw: function(){
         this.context.beginPath();
-        this.context.fillRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
+        this.context.rect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
 
         //If fill is set or stroke is set
         if(this.getFill() !== false)
@@ -154,5 +152,3 @@ Square.prototype = {
         this.context.closePath();
     }
 };
-
-

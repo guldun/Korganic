@@ -135,11 +135,11 @@ Korganic.prototype = {
     },
             
     circle: function(settings){
-        new Circle(this.context, settings);
+        return new Circle(this.context, settings);
     },
     
     square: function(settings)
     {
-        new Square(this.context, settings);
+        return new Square(this.context, settings);
     }
 };
