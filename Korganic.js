@@ -121,8 +121,6 @@ Korganic.prototype = {
             
     rotate: function(object, degrees){
         
-        this.context.save();
-
         this.context.translate( object.getX()+object.getWidth()/2, object.getY()+object.getHeight()/2 );
         // rotate the rect
         this.context.rotate(degrees*Math.PI/180);
@@ -134,7 +132,5 @@ Korganic.prototype = {
         object.setY(-object.getHeight()/2);
 
         object.draw();
-
-        this.context.restore();
     }
 };
