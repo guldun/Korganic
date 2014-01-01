@@ -132,5 +132,14 @@ Korganic.prototype = {
         object.setY(-object.getHeight()/2);
 
         object.draw();
+    },
+            
+    circle: function(settings){
+        new Circle(this.context, settings);
+    },
+    
+    square: function(settings)
+    {
+        new Square(this.context, settings);
     }
 };

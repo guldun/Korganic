@@ -32,12 +32,11 @@
         <script type="text/javascript" charset="utf-8" src="Korganic.js"></script>
         <script type="text/javascript" charset="utf-8" src="Circle.js"></script>
         <script type="text/javascript" charset="utf-8" src="Square.js"></script>
-        <script type="text/javascript" charset="utf-8" src="Rotate.js"></script>
         <script>
             kg = new Korganic(800,600,50);
-            square = new Circle(kg.getContext(), {width: 50, height: 100, x: 50, y: 50, fill: "#FF0000", stroke: "#000000", stroke_width: 10, stroke_opacity: 0.5, fill_opacity: 0.5, opacity: 50});
+            square = kg.square({width: 50, height: 100, x: 50, y: 50, fill: "#FF0000", stroke: "#000000", stroke_width: 10, stroke_opacity: 0.5, fill_opacity: 0.5, opacity: 50});
             
-            kg.rotate(square, 90);
+            //kg.rotate(square, 40);
         </script>
     </body>
 </html>
