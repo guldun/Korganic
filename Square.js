@@ -66,7 +66,7 @@ var Square = function(context, settings)
     
 };
 
-Circle.prototype = {
+Square.prototype = {
     constructor: Square,
     
     getWidth: function(){
@@ -84,7 +84,6 @@ Circle.prototype = {
     setHeight: function(height){
         this.settings.height = height;
     },
-    
     
     getX: function(){
         return this.settings.x;
