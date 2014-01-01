@@ -40,7 +40,7 @@ var Square = function(context, settings)
     };
     
     this.context.beginPath();
-    this.context.fillRect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
+    this.context.rect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
     
     //Check if there is an overall opacity, if there is adjust the individual opacitys to include the overall opacity
     if(this.getOpacity() !== 100)
@@ -61,7 +61,7 @@ var Square = function(context, settings)
         this.context.lineWidth = this.getStrokeWidth();
         this.context.stroke();
     }
-        
+            
     this.context.closePath();
     
 };
