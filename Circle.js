@@ -21,7 +21,8 @@
  * This software is licensed under the MIT License
  */
 
-function Circle(context, settings){
+function Circle(context, settings)
+{
 
     Entity.call(this, context, settings);
 

@@ -23,7 +23,7 @@
 
 function Square(context, settings){
 
-    Square.call(this, context, settings);
+    Entity.call(this, context, settings);
 
 };
 
