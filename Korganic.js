@@ -134,6 +134,27 @@ Korganic.prototype = {
         object.draw();
     },
             
+    gradient: function(object, settings)
+    {
+        //Get Center of Object
+        var centerX = object.getWidth() / 2;
+        var centerY = object.getHeight() /2;
+        
+        var adj = centerX;
+        var angle = settings.degrees;
+                
+        //Get points X2, Y2
+        var x1 = object.getX() + object.getWidth();
+        var y1 = object.getY() + object.getHeight();
+        
+        var grd = object.getContext().createLinearGradient(object.getX(),object.getY(),x1,y1);
+        grd.addColorStop(0, settings.color1);
+        grd.addColorStop(1, settings.color2);
+
+        sq.getContext().fillStyle = grd;
+        sq.getContext().fill();
+    },
+            
     circle: function(settings){
         return new Circle(this.context, settings);
     },

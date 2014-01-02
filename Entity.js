@@ -53,7 +53,14 @@ var Entity = function(context, settings)
 
 Entity.prototype = {
     constructor: Entity,
- 
+    getContext: function(){
+        return this.context;
+    },
+            
+    setContext: function(context){
+        this.context = context;
+    },
+            
     getWidth: function(){
         return this.settings.width;
     },
