@@ -141,5 +141,10 @@ Korganic.prototype = {
     square: function(settings)
     {
         return new Square(this.context, settings);
+    },
+            
+    line: function(settings)
+    {
+        return new Line(this.context, settings);
     }
 };

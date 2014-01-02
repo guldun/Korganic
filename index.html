@@ -33,11 +33,12 @@
         <script type="text/javascript" charset="utf-8" src="Entity.js"></script>
         <script type="text/javascript" charset="utf-8" src="Circle.js"></script>
         <script type="text/javascript" charset="utf-8" src="Square.js"></script>
+        <script type="text/javascript" charset="utf-8" src="Line.js"></script>
         <script>
             kg = new Korganic(800,600,50);
-            square = kg.circle({width: 50, height: 100, x: 50, y: 50, fill: "#FF0000", stroke: "#000000", stroke_width: 10, opacity: 80});
+            square = kg.line({x: {x1:0, x2:50}, y: {y1:0, y2:50}, stroke: "#000000", stroke_width: 5, opacity: 80});
             
-            kg.rotate(square, 40);
+            //kg.rotate(square, 40);
         </script>
     </body>
 </html>
