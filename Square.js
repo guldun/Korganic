@@ -31,7 +31,7 @@ inheritPrototype(Square, Entity);
 
 Square.prototype.draw = function () 
 {
-    
+    this.rotate();
     this.context.beginPath();
     this.context.rect(this.getX(),this.getY(),this.getWidth(), this.getHeight());
 
@@ -47,7 +47,7 @@ Square.prototype.draw = function ()
         this.context.lineWidth = this.getStrokeWidth();
         this.context.stroke();
     }
-
+        
     this.context.closePath();
-
+    
 };

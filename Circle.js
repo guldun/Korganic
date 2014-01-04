@@ -32,6 +32,7 @@ inheritPrototype(Circle, Entity);
 
 Circle.prototype.draw = function () 
 {
+    this.rotate();
     
     //Draw Elipse or Circle
     var kappa = .5522848,

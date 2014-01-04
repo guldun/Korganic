@@ -121,16 +121,7 @@ Korganic.prototype = {
             
     rotate: function(object, degrees){
         
-        this.context.translate( object.getX()+object.getWidth()/2, object.getY()+object.getHeight()/2 );
-        // rotate the rect
-        this.context.rotate(degrees*Math.PI/180);
-
-        // draw the rect on the transformed context
-        // Note: after transforming [0,0] is visually [x,y]
-        //       so the rect needs to be offset accordingly when drawn
-        object.setX(-object.getWidth()/2);
-        object.setY(-object.getHeight()/2);
-
+        object.setRotation(degrees);
         object.draw();
     },
             

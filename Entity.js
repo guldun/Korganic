@@ -152,6 +152,16 @@ Entity.prototype = {
         this.settings.rotation = rotation;
     },
             
+    rotate: function(degrees)
+    {
+        this.context.translate( this.getX()+this.getWidth()/2, this.getY()+this.getHeight()/2 );
+        // rotate the rect
+        this.context.rotate(this.getRotation()*Math.PI/180);
+
+        this.setX(-this.getWidth()/2);
+        this.setY(-this.getHeight()/2);
+    },
+            
     draw: function()
     {
 
